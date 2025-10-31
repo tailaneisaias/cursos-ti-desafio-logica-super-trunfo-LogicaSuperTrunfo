@@ -82,7 +82,7 @@ int main()
   printf("-estado: %c \n-codigodacarta: %s \n-nomedacidade %s \n-populacao: %d \n", NomeDoEstado, Codigo, Cidade, Habitantes);
   printf("-numerodepontosturisticos: %i \n-area: %.2f \n-pib: %.2f \n-DensidadePopulacional: %.2f hab/km²\n-PIB per capita: %.2f reais\n-Super Poder: %.2f\n", Turismo, AreaDaCidade, PibDacidade, Densidadepopulacional, PIBPercapita, SuperPoder);
 
-  printf("\n-----Comparação de cartas ----- \n");
+  printf("\n -----Comparação de cartas ----- \n");
 
   printf("\nPopulação: (Carta 1) - Ganhou %d\n", Populacao > Habitantes);
   printf("Área: (Carta 1) - Ganhou %d\n", Area > AreaDaCidade);
@@ -186,5 +186,90 @@ int main()
   default:
     printf("Opção inválida!\n");
   }
+
+  /* Começa a última parte 2 atributos + soma final) */
+
+  int opcao1, opcao2;
+  float valor1Carta1, valor1Carta2, valor2Carta1, valor2Carta2;
+  float somaCarta1, somaCarta2;
+
+  printf("\nEscolha o primeiro atributo para comparar:\n");
+  printf("1 - População\n 2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Populacional\n");
+  scanf("%d", &opcao1);
+
+  printf("\nEscolha o segundo atributo (diferente do primeiro):\n");
+  printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Populacional\n");
+  scanf("%d", &opcao2);
+
+  if (opcao2 == opcao1)
+  {
+    printf("Você já escolheu esse atributo! Será considerado o próximo da lista automaticamente.\n");
+    opcao2 = opcao1 + 1; // força outro valor, só como exemplo
+  }
+
+  // Primeiro atributo
+  switch (opcao1)
+  {
+  case 1:
+    valor1Carta1 = Populacao;
+    valor1Carta2 = Habitantes;
+    break;
+  case 2:
+    valor1Carta1 = Area;
+    valor1Carta2 = AreaDaCidade;
+    break;
+  case 3:
+    valor1Carta1 = PIB;
+    valor1Carta2 = PibDacidade;
+    break;
+  case 4:
+    valor1Carta1 = NumeroDePontosTuristicos;
+    valor1Carta2 = Turismo;
+    break;
+  case 5:
+    valor1Carta1 = DensidadePopulacional;
+    valor1Carta2 = Densidadepopulacional;
+    break;
+  }
+
+  // Segundo atributo
+  switch (opcao2)
+  {
+  case 1:
+    valor2Carta1 = Populacao;
+    valor2Carta2 = Habitantes;
+    break;
+  case 2:
+    valor2Carta1 = Area;
+    valor2Carta2 = AreaDaCidade;
+    break;
+  case 3:
+    valor2Carta1 = PIB;
+    valor2Carta2 = PibDacidade;
+    break;
+  case 4:
+    valor2Carta1 = NumeroDePontosTuristicos;
+    valor2Carta2 = Turismo;
+    break;
+  case 5:
+    valor2Carta1 = DensidadePopulacional;
+    valor2Carta2 = Densidadepopulacional;
+    break;
+  }
+
+  somaCarta1 = valor1Carta1 + valor2Carta1;
+  somaCarta2 = valor1Carta2 + valor2Carta2;
+
+  printf("\n *** Resultado final ***\n");
+  printf("Carta 1 (%s): %.2f + %.2f = %.2f\n", NomeDaCidade, valor1Carta1, valor2Carta1, somaCarta1);
+  printf("Carta 2 (%s): %.2f + %.2f = %.2f\n", Cidade, valor1Carta2, valor2Carta2, somaCarta2);
+
+  if (somaCarta1 > somaCarta2)
+    printf("\n Carta 1 venceu!\n");
+  else if (somaCarta2 > somaCarta1)
+    printf("\n Carta 2 venceu!\n");
+  else
+    printf("\n Empate!\n");
+
   return 0;
 }
